@@ -10,7 +10,7 @@ const Navigation = () => {
 
     return(
         <>
-            <Header>
+            <Header className="nav_container">
                     <div className="logo" />
                     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
                         

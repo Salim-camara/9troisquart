@@ -1,0 +1,23 @@
+.newEstimate {
+    @include dsc(flex-start, center);
+    width: 100%;
+
+}
+
+.project_name {
+    @include dsc(flex-start, center);
+    margin: 40px 0 40px 0;
+    background-color: lighten(#333, 70%);
+    padding: 10px;
+    width: 80%;
+}
+
+.features {
+    @include dsf(center);
+    width: 80%;
+}
+
+.inputs_container {
+    @include dsc(center, center);
+    width: 100%;
+}
