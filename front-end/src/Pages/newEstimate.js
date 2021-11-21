@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "../Components/nav";
 import axios from "axios";
 import config from "../Services/config";
@@ -12,6 +13,7 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 const NewEstimate = () => {
 
     const [project, setProject] = useState(null);
+    const navigate = useNavigate();
 
     const onFinish = values => {
 
@@ -25,6 +27,7 @@ const NewEstimate = () => {
                 project,
                 features: values
             })
+                .then(() => navigate("/"))
         }
     }
 

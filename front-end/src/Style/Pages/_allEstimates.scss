@@ -4,9 +4,30 @@
 
 .content {
     @include dsc(flex-start, center);
-    background-color: coral;
 }
 
 .bottom {
     border-bottom: 1px solid grey;
+    text-align: center;
+    padding-bottom: 5px
+}
+
+.card {
+    @include dsc(flex-start, center);
+    border: 1px solid grey;
+    margin-top: 50px;
+    padding: 30px;
+}
+
+h2 {
+    // background-color:lighten(grey, 50%);
+    padding: 5px 10px 5px 10px;
+
+    border-bottom: 1px solid grey;
+    width: 80%;
+    text-align: center;
+}
+
+.price {
+    margin-top: 20px;
 }

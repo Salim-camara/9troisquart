@@ -12,15 +12,11 @@ const AllEstimates = () => {
 
     let data = null;
 
-    const [allDevis, setAllDevis] = useState(null);
-
     useEffect(() => {
 
         axios.get(config.url)
             .then((res) => {
                 data = res.data;
-
-                console.log(data);
 
                 for (const devis of data) {
 
@@ -28,56 +24,60 @@ const AllEstimates = () => {
                     const id = devis.id;
 
                     const newCard = document.createElement("div");
-                    newCard.className = `card${id}`;
+                    newCard.className = `card${id} card`;
                     newCard.innerHTML = `
                         <h2>${title}</h2>
                     `
                     const testDiv = document.createElement("div");
-                    testDiv.className = `test${id}`;
+                    testDiv.className = `test${id} containerfeatures`;
                     newCard.appendChild(testDiv);
                     const cards = document.querySelector('.cards');
                     cards.appendChild(newCard);
                     const card = document.querySelector(`.card${id}`);
-                    console.log(devis.features);
 
+                    let allDevisPrice = 0;
                     const testPrice = document.createElement("h3");
-                    testPrice.className = `price${id}`;
-                    testPrice.innerHTML = "testPrice";
+                    testPrice.className = `price${id} price`;
                     newCard.appendChild(testPrice);
 
+                    
                     for (const feature in devis.features) {
-
-
+                        
+                        
                         const cardFeatures = document.querySelector(`.test${id}`);
-
+                        
                         const devisElement = devis.features[feature];
                         const prixConcep = devisElement.concep * config.concep;
                         const prixGp = devisElement.gp * config.gp;
                         const prixDev = devisElement.dev * config.dev;
                         const prixTotal = prixGp + prixDev + prixConcep;
+                        allDevisPrice = allDevisPrice + prixTotal;
                         const featureName = devisElement.feature;
-
+                        
                         const newName = document.createElement("p");
                         newName.innerHTML = `Nom de la fonctionnalité: <strong>${featureName}</strong>`;
                         cardFeatures.appendChild(newName);
 
                         const newConcep = document.createElement("p");
-                        newConcep.innerHTML = `Temps de conception: <strong>${devisElement.concep} jour(s)</strong> soit <strong>${prixConcep} euros</strong>`;
+                        newConcep.innerHTML = `Temps de conception: <strong>${devisElement.concep} jour(s)</strong> soit <strong>${prixConcep} €</strong>`;
                         cardFeatures.appendChild(newConcep);
 
                         const newGp = document.createElement("p");
-                        newGp.innerHTML = `Temps Gp: <strong>${devisElement.gp} jour(s)</strong> soit <strong>${prixGp} euros</strong>`;
+                        newGp.innerHTML = `Temps Gp: <strong>${devisElement.gp} jour(s)</strong> soit <strong>${prixGp} €</strong>`;
                         cardFeatures.appendChild(newGp);
 
                         const newDev = document.createElement("p");
-                        newDev.className = "bottom";
-                        newDev.innerHTML = `Temps de dev: <strong>${devisElement.dev} jour(s)</strong> soit <strong>${prixDev} euros -- ${prixTotal}</strong>`;
+                        newDev.innerHTML = `Temps de dev: <strong>${devisElement.dev} jour(s)</strong> soit <strong>${prixDev} €`;
                         cardFeatures.appendChild(newDev);
-                        
 
-                        // card.appendChild(prixTotal);
-                        // console.log(devis.features[feature].concep);
+                        const newPrice = document.createElement("h4");
+                        newPrice.className = "bottom";
+                        newPrice.innerHTML = `Prix de la fonctionnalité: <strong>${prixTotal} €</strong>`;
+                        cardFeatures.appendChild(newPrice);
+
                     }
+
+                    testPrice.innerHTML = `Prix total: ${allDevisPrice} €`;
 
 
 
