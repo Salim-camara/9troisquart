@@ -16,3 +16,9 @@ exports.newDevis = (req, res) => {
 
 
 // Middleware GET
+exports.allDevis = (req, res) => {
+
+    Devis.findAll()
+        .then((data) => res.status(200).json(data))
+        .catch((err) => res.status(500).json({ message: 'Erreur récupération BDD ' + err }));
+}

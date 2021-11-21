@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navigation from "../Components/nav";
 import axios from "axios";
-import config from "../Services/config"
+import config from "../Services/config";
 
 import { Form, Input, Button, Space } from 'antd';
 import { InputNumber } from 'antd';

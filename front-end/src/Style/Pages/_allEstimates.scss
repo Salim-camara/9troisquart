@@ -1,0 +1,8 @@
+.allEstimates {
+    // @include dsc();
+}
+
+.content {
+    @include dsc(flex-start, center);
+    background-color: coral;
+}
