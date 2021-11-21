@@ -14,7 +14,7 @@ const Devis = db.define('devis', {
         allowNull: false
     },
     features: {
-        type: Sequelize.STRING(255),
+        type: Sequelize.JSON,
         allowNull: false
     }
 });

@@ -6,10 +6,13 @@ const express = require('express');
 exports.newDevis = (req, res) => {
 
     const devis = new Devis({
-        name: "hello",
-        features: "salut"
+        name: req.body.project,
+        features: req.body.features.features
     });
     devis.save()
-        .then(() => res.status(200).json({ message: "hello" }) )
-        .catch((err) => res.status(500).json({ message: "err " + err}))
+        .then(() => res.status(203).json({ message: "Devis correctement sauvegardé" }) )
+        .catch((err) => res.status(500).json({ message: "Erreur sauvegarde Devis " + err}))
 }
+
+
+// Middleware GET
