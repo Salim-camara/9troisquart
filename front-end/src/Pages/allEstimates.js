@@ -12,6 +12,18 @@ const AllEstimates = () => {
 
     let data = null;
 
+    const handleDelete = (e) => {
+
+        e.preventDefault();
+        
+        axios.delete(config.url, { data: { id: e.target.id } })
+            .then(() => {
+
+                window.location.reload();
+            })
+            .catch((err) => console.log("erreur de supression " + err));
+    }
+
     useEffect(() => {
 
         axios.get(config.url)
@@ -25,6 +37,7 @@ const AllEstimates = () => {
 
                     const newCard = document.createElement("div");
                     newCard.className = `card${id} card`;
+                    newCard.id = `${id}`;
                     newCard.innerHTML = `
                         <h2>${title}</h2>
                     `
@@ -34,6 +47,13 @@ const AllEstimates = () => {
                     const cards = document.querySelector('.cards');
                     cards.appendChild(newCard);
                     const card = document.querySelector(`.card${id}`);
+
+                    const buttonDelete = document.createElement("button");
+                    buttonDelete.innerHTML = "X";
+                    buttonDelete.id = `${id}`;
+                    buttonDelete.onclick = handleDelete;
+                    buttonDelete.className = "button_delete";
+                    newCard.appendChild(buttonDelete);
 
                     let allDevisPrice = 0;
                     const testPrice = document.createElement("h3");
@@ -79,20 +99,8 @@ const AllEstimates = () => {
 
                     testPrice.innerHTML = `Prix total: ${allDevisPrice} €`;
 
-
-
                 }
 
-                // setAllDevis(data.map((devis, ) => (
-
-                <div className="cards">
-                    <Card title="hello" bordered={false} style={{ width: 300 }}>
-                        {/* <p>{devis.features.dev}</p> */}
-                        <p>Card content</p>
-                        <p>Card content</p>
-                    </Card>
-                </div>
-                // )) )
 
             })
             .catch((err) => console.log('Erreur récupération axios ' + err));
@@ -108,10 +116,9 @@ const AllEstimates = () => {
                 <Content style={{ padding: '0 50px' }} className="content">
 
                     <div className="cards">
-                        {/* {allDevis} */}
                     </div>
 
-                    <div className="site-layout-content" style={{ margin: '100px' }}>Content</div>
+                    <div className="site-layout-content" style={{ margin: '100px' }}>Test technique - 9troisquart</div>
                 </Content>
             </Layout>
 

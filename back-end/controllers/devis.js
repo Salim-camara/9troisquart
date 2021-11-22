@@ -22,3 +22,13 @@ exports.allDevis = (req, res) => {
         .then((data) => res.status(200).json(data))
         .catch((err) => res.status(500).json({ message: 'Erreur récupération BDD ' + err }));
 }
+
+// Middlexare DELETE
+exports.deleteDevis = (req, res) => {
+
+    const id = req.body.id;
+
+    Devis.destroy({ where: { id: id }})
+        .then(() => res.status(203).json({ message: "Devis correctement supprimer"}))
+        .catch((err) => res.stauts(500).json({ message: "Devis non supprimer " + err}));
+}
